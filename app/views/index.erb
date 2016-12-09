@@ -1,9 +1,16 @@
 <h1> Flashcards </h1>
 <nav>
 <a href= "/"> Home </a>
-<a href= "/login"> Login </a>
-<a href= "/register"> Register </a>
-<a href= "/create"> Create Deck </a>
+<% if logged_in? %>
+  <form class="" action="/sessions" method ="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Logout">
+  </form>
+  <a href= "/create"> Create Deck </a>
+<% else %>
+  <a href= "/login"> Login </a>
+  <a href= "/user/new"> Register </a>
+<% end %>
 </nav>
 
 
