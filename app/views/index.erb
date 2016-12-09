@@ -1,0 +1,17 @@
+<h1> Flashcards </h1>
+<nav>
+<a href= "/"> Home </a>
+<a href= "/login"> Login </a>
+<a href= "/register"> Register </a>
+<a href= "/create"> Create Deck </a>
+</nav>
+
+
+
+
+
+<h2> Flashcard Decks: </h2>
+
+<% @decks.each do |deck| %>
+<a href="www.google.com"><%= deck.name %></a>
+  <% end %>
