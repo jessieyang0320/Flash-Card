@@ -5,7 +5,7 @@ end
 
 
 get '/create' do
-erb :create
+  erb :'/decks/create'
 end
 
 post '/create' do
@@ -16,10 +16,9 @@ redirect '/'
 end
 
 
-get '/show/:id/deck' do
+get '/decks/:id' do
   @decks = Deck.all
-  @flashards = Flashcard.all
-  p @decks
+  @get_cards = Flashcard.all
 
-erb :'show/deck'
+erb :'decks/show'
 end
