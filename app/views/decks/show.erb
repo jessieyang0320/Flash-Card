@@ -1,5 +1,11 @@
 <h2> Flashcard: </h2>
 
-<% @get_cards.each do |flashcard| %>
-<%= flashcard.question %> </br></br>
-  <% end %>
+<%= @get_cards[@counter].question %> </br></br>
+  <form class="" action="/decks/check" method = "post">
+    <input type="text" name="answer" placeholder="Put Answer Here">
+    <input type="submit" value="Submit">
+    <input type="hidden" name="counter" value= "<%= @counter %>">
+    </form>
+   </br></br>
+   <p> <%= @correct_answers%> correct out of <%= @all_guesses%></p>
+
