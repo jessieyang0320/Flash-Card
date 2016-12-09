@@ -4,4 +4,10 @@ class Deck < ActiveRecord::Base
 
   has_many :flashcards
   has_many :rounds
+
+  def check_answers?(anwser, correct_answer)
+    return true if answer == correct_answer
+  end
+
+
 end

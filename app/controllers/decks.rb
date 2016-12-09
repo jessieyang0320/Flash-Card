@@ -24,24 +24,28 @@ end
 
 
 post '/decks/check' do
-  @correct_answers = 0
-  @all_guesses = 0
   @decks = Deck.all
   @round = Round.last.id
   @get_cards = Flashcard.all
-  @counter = params[:counter].to_i
-  if params[:answer] == @get_cards[@counter].answer.downcase
-  @guess = Guess.new(correct?: true,flashcard_id: @get_cards[@counter], round_id: @round)
-  @correct_answers +=1
-  else
-  @guess = Guess.new(correct?: false ,flashcard_id: @get_cards[@counter], round_id: @round)
-  end
 
+  @counter = params[:counter].to_i
+
+  if params[:answer] == @get_cards[@counter].answer.downcase
+    @guess = Guess.new(correct?: true,flashcard_id: @get_cards[@counter], round_id: @round)
+  else
+    @guess = Guess.new(correct?: false ,flashcard_id: @get_cards[@counter], round_id: @round)
+  end
 
   @guess.save
   @counter += 1
-   @all_guesses += 1
 
   erb :'decks/show'
+end
+
+get '/stats' do
+  @guesses = Guess.all
+  @correct_answers = @guesses.count
+  @total_answers = Deck.all.count
+  erb :'decks/stats'
 end
 
